@@ -15,13 +15,14 @@ public class JspRequestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String view = "/WEB-INF/jsp/jsp_request.jsp";
 		
 		System.out.println("param_name : " + request.getParameter("param_name"));
 		
 		if(request.getParameterValues("param_chk") != null) {
 			System.out.println("param_chk : " + Arrays.asList(request.getParameterValues("param_chk")));
-		}
+		} 
 		
 		Iterator<String> iter = request.getParameterNames().asIterator();
 		while(iter.hasNext()) {
@@ -32,6 +33,9 @@ public class JspRequestController extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");		
+		System.out.println(request.getParameter("username"));
+		
 		String view = "/WEB-INF/jsp/jsp_request.jsp";
 		request.getRequestDispatcher(view).forward(request, response);
 	}
