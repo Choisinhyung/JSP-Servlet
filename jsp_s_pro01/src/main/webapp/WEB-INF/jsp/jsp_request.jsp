@@ -5,10 +5,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>JSP - request 객체</title>
+	<title>JSP/Servlet - request 객체</title>
 </head>
 <body>
-	<h1>JSP - request 객체</h1>
+	<h1>JSP/Servlet - request 객체</h1>
 	<h2>getMethod()</h2>
 	<p>
 		request.getMethod() : <%=request.getMethod() %>

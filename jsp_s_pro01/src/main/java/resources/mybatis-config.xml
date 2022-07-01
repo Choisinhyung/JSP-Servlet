@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	 <!-- 별도의 properties를 미리 설정 : 변수에 저장한다고 보면 됨-->
+	 <!-- <properties url="file:///C:/Users/tlsgu/oracle_db.conf.txt">  -->
+	 <properties resource="resources/oracle_db.conf.txt"> 
+	 	<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+	 </properties>
+	 <settings> 
+	 	<!-- 자바타입에 대해서 null이 발생되면 oracle 타입의 null로 인식하라는 설정 : 즉 에러없이 동작할 수 있는 데이터 타입으로 변환 -->
+	 	<setting name="jdbcTypeForNull" value="NULL"/>
+	 </settings>
+	 <typeAliases>
+	 	<!-- 객체 정보(경로)를 담기위한 typeAliases -->
+	 	<typeAlias type="dept.model.DeptDTO" alias="deptDto"/>
+	 </typeAliases>
+	 <environments default="development">
+	    <environment id="development">
+		    <transactionManager type="JDBC"/>
+  		    <dataSource type="POOLED">
+  		    	<!-- 위의 property에 저장한 변수 driver를 사용 -->
+	   		    <property name="driver" value="${driver}"/>
+		        <property name="url" value="${url}"/>
+        		<property name="username" value="puser1"/>
+    		    <property name="password" value="puser1"/>
+    		    <property name="poolMaximumIdleConnections" value="5"/>
+    		    <property name="poolMaximumActiveConnections" value="10"/>
+     		</dataSource>
+   		</environment>
+  	 </environments>
+     <mappers>
+   		<mapper resource="resources/mapper/department.xml"/>
+ 	 </mappers>
+</configuration>
+
+<!-- driver : orecle.jdbc.driver.OracleDriver -->
+<!-- url : jdbc:oracle:thin:@localhost:1521/XEPDB1 -->
+<!-- username -->
+<!-- password -->
+<!-- mapper 경로 설정도 해야대용 -->
