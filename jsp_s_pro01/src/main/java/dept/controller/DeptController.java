@@ -15,9 +15,11 @@ import dept.service.DeptService;
 @WebServlet("/depts")
 public class DeptController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	// doGet안에서 선언하면 사용자가 요청될 때 마다 계속 요청해야하기 때문에 멤버변수로 만들어 놓는게 편함
+	private DeptService service = new DeptService();  
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DeptService service = new DeptService();
 		List<DeptDTO> deptDatas = service.getAll();
 		
 		request.setAttribute("deptDatas", deptDatas);   // 컨트롤러에서 jsp파일로 값을 가져오는 코드
