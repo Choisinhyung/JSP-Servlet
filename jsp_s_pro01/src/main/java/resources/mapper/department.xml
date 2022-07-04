@@ -23,7 +23,7 @@
 		             , MANAGER_ID
 		             , LOCATION_ID
 		          FROM DEPARTMENTS)
-		 WHERE NUM BETWEEN #{start} AND #{end} <!-- f -->
+		 WHERE NUM BETWEEN #{start} AND #{end}
 	</select>
 	<select id="deptTotalRow" resultType="_int">
 		SELECT COUNT(*) FROM DEPARTMENTS
