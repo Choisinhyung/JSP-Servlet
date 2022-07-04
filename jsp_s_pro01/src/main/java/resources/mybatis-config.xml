@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	 <typeAliases>
 	 	<!-- 객체 정보(경로)를 담기위한 typeAliases -->
 	 	<typeAlias type="dept.model.DeptDTO" alias="deptDto"/>
+	 	<typeAlias type="locs.model.LocsDTO" alias="locsDto"/>
 	 </typeAliases>
 	 <environments default="development">
 	    <environment id="development">
@@ -32,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   	 </environments>
      <mappers>
    		<mapper resource="resources/mapper/department.xml"/>
+   		<mapper resource="resources/mapper/location.xml"/>
  	 </mappers>
 </configuration>
 

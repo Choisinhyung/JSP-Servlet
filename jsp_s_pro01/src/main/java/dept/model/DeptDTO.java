@@ -43,4 +43,6 @@ public class DeptDTO { // 컬럼 매칭
 		return "DeptDTO [deptId=" + deptId + ", deptName=" + deptName + ", mngId=" + mngId + ", locId=" + locId + "]";
 	}
 	
+
+	
 }

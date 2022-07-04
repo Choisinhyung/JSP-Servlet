@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import conn.db.DBConn;
 
-public class DeptDAO {
+public class DeptDAO { //
 
 	SqlSession session = null;
 	
@@ -62,5 +62,10 @@ public class DeptDAO {
 	
 	public void close() {
 		session.close();
+	}
+	
+	public DeptDTO searchId(String id) {
+		DeptDTO data = session.selectOne("deptMapper.deptSelectId", id);
+		return data;
 	}
 }

@@ -1,6 +1,7 @@
 package dept.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,7 +21,23 @@ public class DeptController extends HttpServlet {
 	private DeptService service = new DeptService();  
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<DeptDTO> deptDatas = service.getAll();
+		String search = request.getParameter("search");
+		
+		List<DeptDTO> deptDatas = null;
+		if(search == null) {
+			deptDatas = service.getAll();
+		} else {
+//			DeptDTO dto = new DeptDTO();
+//			dto.setDeptId(Integer.parseInt(search));
+//			DeptDTO data = service.getId(Integer.parseInt(search));
+			DeptDTO data = service.getId(search);
+			if (data != null ) {
+				deptDatas = new ArrayList<DeptDTO>();
+				deptDatas.add(data);
+			}
+		}
+		
+//		List<DeptDTO> deptDatas = service.getAll();
 		
 		request.setAttribute("deptDatas", deptDatas);   // 컨트롤러에서 jsp파일로 값을 가져오는 코드
 		// request 객체에 속성을 설정한다고 보면 됨.

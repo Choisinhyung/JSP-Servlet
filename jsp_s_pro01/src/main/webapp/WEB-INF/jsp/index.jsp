@@ -13,6 +13,8 @@
 		<li><a href="./jsp_request">JSP/Servlet - request 객체</a></li>
 		<li><a href="./jsp_response">JSP/Servlet - response 객체</a></li>
 		<li><a href="./model2">JSP/Servlet - model2 객체</a></li>
+		<li><a href="./depts">부서 조회</a></li>
+		<li><a href="./locs">지역 조회</a></li>
 	</ul>
 </body>
 </html>

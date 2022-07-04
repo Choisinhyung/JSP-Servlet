@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, dept.model.DeptDTO" %>
+<%@ page import="java.util.*, locs.model.LocsDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>부서 조회 결과</title>
+	<title>지역 조회 결과</title>
 	<style type="text/css">
 		.required-box {
 			margin: 0; padding: 0.3rem 0.6rem;
@@ -18,32 +18,33 @@
 			color: white;
 			box-shadow: 2px 2px 2px gray;
 			opacity: 0;
-			transition: opacity 0.5s;
 		}
 		.required-box.show {
 			opacity: 1;
-			transition: opacity 0.5s;
-		}
-		.required-box:after {
-			content: '';
-			position: absolute;
-			top: 0; left: 15%;
-			width: 0; height: 0;
-			border: 6px solid transparent;
-			/* border-bottom-color: white; */
-			border-top: 0;
-			margin-left: -6px; margin-top: -6px;
+			transition: opacity 1s;
 		}
 		.required-box:before {
 			content: '';
 			position: absolute;
 			top: 0; left: 15%;
 			width: 0; height: 0;
-			border: 7px solid transparent;
+			border: 6px solid transparent;
 			border-bottom-color: black;
 			border-top: 0;
-			margin-left: -7px; margin-top: -7px;
+			margin-left: -6px; margin-top: -6px;
 		}
+		/*
+		.required-box:after {
+			content: '';
+			position: absolute;
+			top: 0; left: 50%;
+			width: 0; height: 0;
+			border: 4px solid transparent;
+			border-bottom-color: white;
+			border-top: 0;
+			margin-left: -4px; margin-top: -4px;
+		}
+		*/
 	</style>
 </head>
 <script type="text/javascript">
@@ -81,61 +82,41 @@ function requiredBox(element, message) {
 }
 </script>
 <body>
-	<h1>부서 조회 결과</h1>
+	<h1>지역 조회 결과</h1>
 	<div>
-		<button type="button" onclick="location.href='./depts/add'">추가</button>
-	</div>
-	<div>
-		<form action="./depts" method="get">
+		<form action="./locs" method="get">
 			<div>
-				<input type="text" name="search" data-required="부서코드를 입력하세요.">
+				<input type="text" name="search" data-required="지역코드를 입력하세요.">
 				<button type="submit">조회</button>
 			</div>
 		</form>
 	</div>
 	<table>
 		<tr>
-			<th>DeptId</th>
-			<th>DeptName</th>
-			<th>MngId</th>
 			<th>LocId</th>
-			<th></th>
+			<th>StAddr</th>
+			<th>Postal</th>
+			<th>City</th>
+			<th>State</th>
+			<th>CtyId</th>
 		</tr>
 	<%
-		if(request.getAttribute("deptDatas") != null) {
-			List<DeptDTO> datas = (List<DeptDTO>) request.getAttribute("deptDatas");
-			for(DeptDTO data: datas) {
+		if(request.getAttribute("locsDatas") != null) {
+			List<LocsDTO> datas = (List<LocsDTO>) request.getAttribute("locsDatas");
+			for(LocsDTO data: datas) {
 	%>
 				<tr>
-					<td><%=data.getDeptId() %></td>
-					<td><%=data.getDeptName() %></td>
-					<td><%=data.getMngId() %></td>
-					<td><a href="./locs?search=<%=data.getLocId() %>"><%=data.getLocId() %></a></td>
-					<td>
-						<button type="button" onclick="location.href='./depts/mod?id=<%=data.getDeptId() %>'">수정</button>
-						<button type="button" onclick="location.href='./depts/del?id=<%=data.getDeptId() %>'">삭제</button>
-					</td>
+					<td><%=data.getLocId() %></td>
+					<td><%=data.getStAddr() %></td>
+					<td><%=data.getPostal() %></td>
+					<td><%=data.getCity() %></td>
+					<td><%=data.getState() %></td>
+					<td><%=data.getCtyId() %></td>
 				</tr>
 	<%
 			}
 		}
 	%>
 	</table>
-	<div>
-		<ul>
-			<li><a href="">Prev</a></li>
-			<%
-				if(request.getAttribute("pageList") != null) {
-					List<Integer> pageList = (List<Integer>) request.getAttribute("pageList");
-					for(Integer n: pageList) {
-			%>
-						<li><a href="./depts?page=<%=n %>"><%=n %></a></li>
-			<%
-					}
-				}
-			%>
-			<li><a href="">Next</a></li>
-		</ul>
-	</div>
 </body>
 </html>
