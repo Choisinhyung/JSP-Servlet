@@ -15,6 +15,19 @@
 		SELECT * FROM DEPARTMENTS
 		 WHERE DEPARTMENT_ID = #{id}
 	</select>
+	<select id="deptSelectPage" resultMap="deptDtoMap">
+		SELECT *
+		  FROM (SELECT ROWNUM AS NUM
+		             , DEPARTMENT_ID
+		             , DEPARTMENT_NAME
+		             , MANAGER_ID
+		             , LOCATION_ID
+		          FROM DEPARTMENTS)
+		 WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	<select id="deptTotalRow" resultType="_int">
+		SELECT COUNT(*) FROM DEPARTMENTS
+	</select>
 	<select id="existManager" resultType="_int">
 		SELECT COUNT(*) FROM EMPLOYEES WHERE EMPLOYEE_ID = #{id}
 	</select>
@@ -31,4 +44,8 @@
 		     , LOCATION_ID = #{locId}
 		 WHERE DEPARTMENT_ID = #{deptId}
 	</update>
+	<delete id="deptDelete" parameterType="_int">
+		DELETE FROM DEPARTMENTS
+		 WHERE DEPARTMENT_ID = #{id}
+	</delete>
 </mapper>
